@@ -1,12 +1,12 @@
 // require your gulp packages here
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
-var plumber = require('gulp-plumber');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+const gulp = require('gulp');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const plumber = require('gulp-plumber');
+const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync');
+const reload = browserSync.reload;
 
 // create tasks for the packages you've required
 // the .task() function takes two parameters - 
@@ -16,7 +16,7 @@ var reload = browserSync.reload;
 // tasks normally are src'd then piped through to the dest
 // use globs to match patterns/filenames
 // create a watch task to watch files for any updates and automatically refreshes
-gulp.task('scripts', function() {
+gulp.task('scripts', () =>{
 	gulp.src(['app/js/**/*.js', '!app/js/**/*.min.js'])
 	.pipe(rename({suffix: '.min'}))
 	.pipe(uglify())
@@ -27,7 +27,7 @@ gulp.task('scripts', function() {
 })
 
 // create html task
-gulp.task('html', function() {
+gulp.task('html', () =>{
 	gulp.src('app/**/*.html')
 	.pipe(reload({
 		stream: true
@@ -35,7 +35,7 @@ gulp.task('html', function() {
 });
 
 // create Sass tasks
-gulp.task('sass', function() {
+gulp.task('sass', () =>{
 	gulp.src('app/scss/**/*.scss')
 	.pipe(plumber())
 	.pipe(sass({
@@ -51,7 +51,7 @@ gulp.task('sass', function() {
 })
 
 // create browser sync task
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', () =>{
 	browserSync({
 		server: {
 			baseDir: ['./', './app/']
@@ -60,7 +60,7 @@ gulp.task('browser-sync', function() {
 });
 
 // create watch task
-gulp.task('watch', function() {
+gulp.task('watch', () =>{
 	gulp.watch('app/js/**/*.js', ['scripts']);
 	gulp.watch('app/scss/**/*.scss', ['sass']);
 	gulp.watch('app/**/*.html', ['html']);
