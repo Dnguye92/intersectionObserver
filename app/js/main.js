@@ -15,7 +15,7 @@ $.ajax({
 	type: 'GET',
 	success: function(data) {
 		var authors = data.results;
-		var randColor = ['navy', 'maroon', 'salmon', 'darkgreen', 'silver'];
+		var randColor = ['#01848F', '#00897B', '#F9A11F', '#783393', '#FCD837'];
 		// var img = createElement('img');
 		// img.src = authors.picture.medium;
 		// append(li, img);
@@ -23,14 +23,13 @@ $.ajax({
 		for(var i = 0; i < authors.length; i++) {
 			var li = createElement('li');
 			var img = createElement('img');
-			img.src = authors[i].picture.large;
+			// img.src = authors[i].picture.large;
+			img.setAttribute('src', authors[i].picture.large);
 			li.style.background = randColor[Math.floor(Math.random() * randColor.length)];
-			li.style.listStyle = 'none';
-			img.className = 'img-responsive';
+			img.className = 'img-responsive lozad';
 			append(li, img);
 			append(ul, li);
 		}
-
 		console.log(data);
 	}
 })
